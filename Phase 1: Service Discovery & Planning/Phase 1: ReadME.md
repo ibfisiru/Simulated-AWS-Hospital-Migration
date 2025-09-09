@@ -1,4 +1,4 @@
-Discovery & Planning (Phase 1 of 5)
+Discovery & Planning
 
 ## Here’s what went into the first phase, Discovery & Planning for this hospital cloud migration.
 
