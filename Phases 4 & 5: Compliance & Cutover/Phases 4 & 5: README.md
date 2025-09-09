@@ -53,4 +53,4 @@ Post-migration, I identified the following areas for refinement:
 		○ DR & HA:
 			§ Use Lambda functions to automate certain tasks like snapshot validation and config drift detection
 		○ Testing:
-Use AWS Inspector to scan for vulnerabilities<img width="1080" height="1635" alt="image" src="https://github.com/user-attachments/assets/6026e16c-da1b-42f5-a744-ce1aefe21b6d" />
+Use AWS Inspector to scan for vulnerabilities
