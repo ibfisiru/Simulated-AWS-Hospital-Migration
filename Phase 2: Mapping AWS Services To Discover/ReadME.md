@@ -41,4 +41,4 @@ The on-prem workloads were mapped to these EC2 instance types:
 ## Resilience & DR Planning:
 * DR region will be located in US-East-2, an active-passive setup (slower failover compared to an active-active setup but costs for resource reservation is lower)
 * Only critical workloads are replicated in the DR site
-* Used S3 tiering and automated RDS snapshots to cut storage and deployment costs<img width="1019" height="1120" alt="image" src="https://github.com/user-attachments/assets/5f8c7e6d-f5e7-4890-8fe7-d8f44e0529da" />
+* Used S3 tiering and automated RDS snapshots to cut storage and deployment costs
