@@ -1,7 +1,7 @@
 # Simulated-AWS-Hospital-Migration
 Simulated AWS migration of a multi-site hospital network with HIPAA-style security. Built according to the AWS Well-Architected framework.
 
-## How do you modernize and migrate an organization to the cloud without breaking compliance, losing visibility, or compromising user data? That’s the question I set out to answer when I designed and executed a simulated AWS cloud migration for a mid-sized regional hospital network.
+How do you modernize and migrate an organization to the cloud without breaking compliance, losing visibility, or compromising user data? That’s the question I set out to answer when I designed and executed a simulated AWS cloud migration for a mid-sized regional hospital network.
 
 ## Hospital organizational profile: 
 - 1 main hospital site
