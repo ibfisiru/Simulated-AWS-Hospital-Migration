@@ -11,7 +11,7 @@ How do you modernize and migrate an organization to the cloud without breaking c
 The outpatient clinic and two satellite locations would remain on-prem for the time being, making for a hybrid infrastructure. Attached is the cloud design diagram I created and worked backwards from, with minor design tweaks along the way.
 
 
-## Note: This was a self-directed simulation, not a client project. All components from zero-trust principles design, network design, app and DB migrations, and industry compliance needs, was modeled on real-world healthcare constraints.
+Note: This was a self-directed simulation, not a client project. All components from zero-trust principles design, network design, app and DB migrations, and industry compliance needs, was modeled on real-world healthcare constraints.
 
 ## How I approached it:
 - While I don’t have deep healthcare network experience, I used a combination of: 
