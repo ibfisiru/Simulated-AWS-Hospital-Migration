@@ -24,14 +24,14 @@ The outpatient clinic and two satellite locations would remain on-prem for the t
 The goal was to stress-test a cloud migration framework in a regulated, high-stakes context.
 
 ## The Migration Framework: 
-To keep everything structured, I used the ITIL framework to develop and follow a high-level, 5-phase framework made of the following steps: 
+To keep everything structured, I used the ITIL framework to develop my own high-level, 5-phase framework made of the following steps: 
 1) Discovery & Planning
 2) Service Translation & Architecture Design
 3) Migration & Deployment Execution
 4) Compliance & Optimization
 5) Cutover & Training
 
-## The Following aiagram is what I designed first, and worked backwards from to build the infrastructure.
+## The Following aiagram is what I designed first, and worked backwards from to build out the infrastructure.
 ![FPHN Architecture](https://github.com/user-attachments/assets/28ed0aba-21d7-44fe-bc02-a66694870c3f)
 
 
