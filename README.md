@@ -13,7 +13,8 @@ The outpatient clinic and two satellite locations would remain on-prem for the t
 
 ## Note: This was a self-directed simulation, not a client project. All components from zero-trust principles design, network design, app and DB migrations, and industry compliance needs, was modeled on real-world healthcare constraints.
 
-## How I approached it: While I don’t have deep healthcare network experience, I used a combination of: 
+## How I approached it:
+- While I don’t have deep healthcare network experience, I used a combination of: 
 - My AWS infrastructure knowledge
 - AI tools like ChatGPT and Claude to explore realistic hospital tech stacks, technical edge cases, security/compliance constraints, and feedback loops.
 The goal was to stress-test a cloud migration framework in a regulated, high-stakes context.
