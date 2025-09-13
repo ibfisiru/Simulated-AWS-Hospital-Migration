@@ -15,12 +15,16 @@ The outpatient clinic and two satellite locations would remain on-prem for the t
 
 ## How I approached it:
 - While I don’t have deep healthcare network experience, I used a combination of: 
-- My AWS infrastructure knowledge
-- AI tools like ChatGPT and Claude to explore realistic hospital tech stacks, technical edge cases, security/compliance constraints, and feedback loops.
+- My AWS knowledge attained from the 'Solution Architect - Associate' learning path
+- AI tools like ChatGPT and Claude to explore:
+    * Realistic hospital tech stacks
+    * Technical edge cases
+    * Security/compliance constraints
+    * Feedback loops
 The goal was to stress-test a cloud migration framework in a regulated, high-stakes context.
 
 ## The Migration Framework: 
-To keep everything structured, I developed and followed a high-level, 5-phase framework: 
+To keep everything structured, I used the ITIL framework to develop and follow a high-level, 5-phase framework made of the following steps: 
 1) Discovery & Planning
 2) Service Translation & Architecture Design
 3) Migration & Deployment Execution
