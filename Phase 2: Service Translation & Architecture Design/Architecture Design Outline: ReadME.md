@@ -10,20 +10,7 @@
 					  ◊ Satellite location 1
 					  ◊ Satellite location 2
 
-			§ The Main Site:
-				□ CIDR Block: 10.0.0.0/16 (providing ample IP address space for growth)
-				□ Region: us-east-1 (North Virginia, closest to Boston, where the simulated hospital is located)
-				□ Enable DNS hostnames and DNS resolution
-			§ DR site:
-				□ CIDR: 10.1.0.0/16
-				□ Region us-east-2 (Ohio)
-				□ Enable DNS
-			§ Management Site:
-				□ VPC CIDR: 10.2.0.0/16
-			§ Outpatient Clinic:
-				□ On-prem
-			§ 2 Satellite Locations:
-				□ On-prem
+			
 
 
 
