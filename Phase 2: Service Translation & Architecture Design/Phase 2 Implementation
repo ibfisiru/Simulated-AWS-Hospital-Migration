@@ -1,1 +1,20 @@
+§ The Main VPC Site Has The Following Configuration:
+				□ CIDR: 10.0.0.0/16
+				□ Region: us-east-1 (North Virginia, closest to Boston, where the simulated hospital is located)
+				□ Enable DNS hostnames and DNS resolution
 
+§ The DR site Has The Following Configuration:
+				□ CIDR: 10.1.0.0/16
+				□ Region us-east-2 (Ohio)
+				□ Enable DNS
+
+§ The Cloud Management Site Has The Following Configuration:
+				□ VPC CIDR: 10.2.0.0/16
+        □ Enable DNS
+        □ Region: us-east-1 (North Virginia, to reduce latency in connecting for server management)
+		
+§ Outpatient Clinic:
+				□ On-prem
+			
+§ 2 Satellite Locations:
+				□ On-prem
