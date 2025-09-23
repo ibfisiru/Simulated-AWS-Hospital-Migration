@@ -3,19 +3,20 @@ Discovery & Planning
 ## Here’s what went into the first phase, Discovery & Planning for this hospital cloud migration.
 
 ## Discovery Goals & Planning Focus:
-Before deploying any infrastructure, I simulated what a real discovery and fact gathering phase might look like for a hospital network preparing to move to the cloud. Key considerations included:
-	- Services & applications: EHR, billing, Imaging (x-rays, MRI's etc.)
-	- End user types: doctors, nurses, IT teams, patients
-	- Access patterns & permissions by role
-	- Data classification & retention (HIPAA, logs, audits)
-	- RTO/RPO & disaster recovery expectations
-	- High availability systems vs. those that can tolerate longer downtime
-	- Chokepoints in the on-prem design that can be addressed with a migration to the AWS cloud
-	- Hybrid design plan:
-		○ 1 main hospital
-		○ 2 satellite clinics
-		○ 1 outpatient center
-		○ 1 admin office
+Before deploying any infrastructure, I simulated what a real discovery and fact gathering phase might look like for a hospital network preparing to move to the cloud. 
+	Key considerations included:
+		- Services & applications: EHR, billing, Imaging (x-rays, MRI's etc.)
+		- End user types: doctors, nurses, IT teams, patients
+		- Access patterns & permissions by role
+		- Data classification & retention (HIPAA, logs, audits)
+		- RTO/RPO & disaster recovery expectations
+		- High availability systems vs. those that can tolerate longer downtime
+		- Chokepoints in the on-prem design that can be addressed with a migration to the AWS cloud
+		- Hybrid design plan:
+			○ 1 main hospital
+			○ 2 satellite clinics
+			○ 1 outpatient center
+			○ 1 admin office
 Only the hospital & admin office moved to AWS. The rest stayed on-prem
 
 ## AI Use Case and Assumptions:
