@@ -3,9 +3,9 @@ Discovery & Planning
 ## Here’s what went into the first phase, Discovery & Planning for this hospital cloud migration.
 
 ## Discovery Goals & Planning Focus:
-	Before deploying any infrastructure, I simulated what a real discovery and fact gathering phase might look like for a hospital network preparing to move to the cloud. 
+	Before deploying any infrastructure, I simulated what a real discovery and fact-gathering phase might look like for a hospital network preparing to move to the cloud. 
 	Key considerations included:
-		- Services & applications: EHR, billing, Imaging (x-rays, MRI's etc.)
+		- Services & applications: EHR, billing, Imaging (X-rays, MRIs, etc.)
 		- End user types: doctors, nurses, IT teams, patients
 		- Access patterns & permissions by role
 		- Data classification & retention (HIPAA, logs, audits)
@@ -17,10 +17,10 @@ Discovery & Planning
 			○ 2 satellite clinics
 			○ 1 outpatient center
 			○ 1 admin office
-Only the hospital & admin office moved to AWS. The outpatient clinic and satellite locations stayed on-prem
+Only the hospital & admin office were migrated to AWS. The outpatient clinic and satellite locations stayed on-prem
 
 ## AI Use Case and Assumptions:
-	Since I don’t have hands-on healthcare IT experience, I used AI tools like ChatGPT to simulate realistic constraints and test assumptions. The AI tools helped define:
+	Since I don’t have direct hands-on healthcare IT experience, I used AI tools like ChatGPT to simulate realistic constraints and test assumptions. The AI tools helped define:
 	- Actual core clinical applications like: 
 		○ Cerner (for Electronic Health Records)
 		○ Oracle (For Databases)
@@ -36,7 +36,7 @@ Only the hospital & admin office moved to AWS. The outpatient clinic and satelli
 		○ Historical records (lower access frequency, but always online for auditing and such)
 		○ Imaging (large, high-bandwidth transfers)
 	- Security & compliance:
-		○ SIEM (To detect, analyze, and respond to traffic on the network)
+		○ SIEM (detecting, analyzing, and responding to network traffic)
 		○ Monitoring and log collection
 		○ IAM role design (for least privilege access)
 		○ Active Directory integration
@@ -44,11 +44,11 @@ Only the hospital & admin office moved to AWS. The outpatient clinic and satelli
 	- Migration risks and service translation strategies
 		○ To keep the simulation grounded in real-world complexity and not just an idealized cloud setup
 
-## In short, the AI tools helped to:
+## In short, AI tools helped to:
 	- Validate storage tiers
 	- Brainstorm realistic hospital workloads
 	- Identify compliance blind spots
-	- Stress-test assumptions (like large imaging archives).
+	- Stress-test assumptions (such as large imaging archives).
 The goal: a design grounded in real-world constraints.
 
 
