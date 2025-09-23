@@ -71,12 +71,12 @@ The on-prem workloads were mapped to these EC2 instance types:
 	  	- Use AWS Systems Manager
          	◊ The SSH protocol is chose as it can be disabled when maintenance is completed on the sever
 
-	 □ For automated data transfer between on-prem and AWS services like S3AWS DataSync:
+ 	  □ For automated data transfer between on-prem and AWS services like S3AWS DataSync:
 	  	- For automated data transfer between on-prem and AWS services like S3
 			
-	 □ For Monitoring & Alerts:
+	  □ For Monitoring & Alerts:
 	  	- Setup CloudWatch agents on the on-prem and cloud servers
 					
-	 □ IAM:
+	  □ IAM:
 	  	- Needs to be combined with on-premises AD to allow access to the cloud resources
 			
