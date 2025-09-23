@@ -45,8 +45,8 @@ Only the hospital & admin office were migrated to AWS. The outpatient clinic and
 		○ To keep the simulation grounded in real-world complexity and not just an idealized cloud setup
 
 ## In short, AI tools helped to:
-	- Validate storage tiers
 	- Brainstorm realistic hospital workloads
+	- Validate storage tiers
 	- Identify compliance blind spots
 	- Stress-test assumptions (such as large imaging archives).
 The goal: a design grounded in real-world constraints.
