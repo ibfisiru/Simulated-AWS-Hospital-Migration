@@ -17,10 +17,10 @@ Discovery & Planning
 			○ 2 satellite clinics
 			○ 1 outpatient center
 			○ 1 admin office
-Only the hospital & admin office moved to AWS. The rest stayed on-prem
+Only the hospital & admin office moved to AWS. The outpatient clinic and satellite locations stayed on-prem
 
 ## AI Use Case and Assumptions:
-Since I don’t have hands-on healthcare IT experience, I used AI tools like ChatGPT to simulate realistic constraints and test assumptions. The AI tools helped define:
+	Since I don’t have hands-on healthcare IT experience, I used AI tools like ChatGPT to simulate realistic constraints and test assumptions. The AI tools helped define:
 	- Actual core clinical applications like: 
 		○ Cerner (for Electronic Health Records)
 		○ Oracle (For Databases)
