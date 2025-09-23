@@ -3,7 +3,7 @@ Discovery & Planning
 ## Here’s what went into the first phase, Discovery & Planning for this hospital cloud migration.
 
 ## Discovery Goals & Planning Focus:
-Before deploying any infrastructure, I simulated what a real discovery and fact gathering phase might look like for a hospital network preparing to move to the cloud. 
+	Before deploying any infrastructure, I simulated what a real discovery and fact gathering phase might look like for a hospital network preparing to move to the cloud. 
 	Key considerations included:
 		- Services & applications: EHR, billing, Imaging (x-rays, MRI's etc.)
 		- End user types: doctors, nurses, IT teams, patients
