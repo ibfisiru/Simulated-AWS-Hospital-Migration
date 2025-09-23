@@ -1,21 +1,23 @@
 # Simulated-AWS-Hospital-Migration
-Simulated AWS migration of a multi-site hospital network with HIPAA-style security. Built according to the AWS Well-Architected framework.
+A simulated AWS migration of a multi-site hospital network with HIPAA-style security, designed according to the AWS Well-Architected Framework
 
-How do you modernize and migrate an organization to the cloud without breaking compliance, losing visibility, or compromising user data? That’s the question I set out to answer when I designed and executed a simulated AWS cloud migration for a mid-sized regional hospital network.
+How do you modernize and migrate an organization to the cloud without breaking compliance, losing visibility, or compromising user data? This project explores that challenge through a self-directed AWS migration simulation for a mid-sized regional hospital network
+
+
+Note: This project is not built for production scale. It is a self-directed simulation designed to highlight the workflow and thought process behind building AWS architectures. The build incorporates zero-trust principles, network segmentation, application and database migrations, and compliance considerations modeled on real-world healthcare constraints
 
 ## Hospital organizational profile: 
 - 1 main hospital site
 - 2 satellite clinics offering limited services
 - 1 outpatient clinic
 - 1 central admin office
-The outpatient clinic and two satellite locations would remain on-prem for the time being, making for a hybrid infrastructure. Attached is the cloud design diagram I created and worked backwards from, with minor design tweaks along the way.
+The outpatient clinic and two satellite locations would remain on-prem for the time being, making for a hybrid infrastructure. The design diagram below served as the starting point, refined with minor adjustments along the way.
 
 
-Note: This was a self-directed simulation, not a client project. All components from zero-trust principles design, network design, app and DB migrations, and industry compliance needs, was modeled on real-world healthcare constraints.
 
 ## How I approached it:
-- While I don’t have deep healthcare network experience, I used a combination of: 
-- My AWS knowledge attained from the 'Solution Architect - Associate' learning path
+While I don’t have deep healthcare network experience, I used a combination of: 
+- My AWS knowledge, developed through the Solutions Architect - Associate learning path
 - AI tools like ChatGPT and Claude to explore:
     * Realistic hospital tech stacks
     * Technical edge cases
@@ -31,7 +33,7 @@ To keep everything structured, I used the ITIL framework to develop my own high-
 4) Compliance & Optimization
 5) Cutover & Training
 
-## The Following aiagram is what I designed first, and worked backwards from to build out the infrastructure.
+## The following diagram was designed first and used as the blueprint for building the infrastructure:
 ![FPHN Architecture](https://github.com/user-attachments/assets/28ed0aba-21d7-44fe-bc02-a66694870c3f)
 
 
