@@ -58,8 +58,8 @@ The on-prem workloads were mapped to these EC2 instance types:
 	  	◊ Satellite location 1
 		◊ Satellite location 2
 
-Services To Use 
-   □ Connecting The Cloud Environment To The On-Prem Locations:
+## Services To Use 
+ 	  □ Connecting The Cloud Environment To The On-Prem Locations:
 	  - Both the VPC's and on-prem sites will all be linked AWS Transit Gateway
 	  - Why AWS Transit Gateway?
 	   	◊ It provides consistent network design which makes for easier network management
@@ -67,16 +67,16 @@ Services To Use
 	    ◊ Designed for architectures that demand low-latency & demand high-security
 	    ◊ Higher cost compared to site-to-site VPN but is more reliable
 
-  □ To manage the on-prem servers and update them via SSH:
+	  □ To manage the on-prem servers and update them via SSH:
 	  - Use AWS Systems Manager
          ◊ The SSH protocol is chose as it can be disabled when maintenance is completed on the sever
 
- □ For automated data transfer between on-prem and AWS services like S3AWS DataSync:
+	 □ For automated data transfer between on-prem and AWS services like S3AWS DataSync:
 	  - For automated data transfer between on-prem and AWS services like S3
 			
- □ For Monitoring & Alerts:
+	 □ For Monitoring & Alerts:
 	  - Setup CloudWatch agents on the on-prem and cloud servers
 					
- □ IAM:
+	 □ IAM:
 	  - Needs to be combined with on-premises AD to allow access to the cloud resources
 			
