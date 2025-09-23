@@ -42,3 +42,41 @@ The on-prem workloads were mapped to these EC2 instance types:
 * DR region will be located in US-East-2, an active-passive setup (slower failover compared to an active-active setup but costs for resource reservation is lower)
 * Only critical workloads are replicated in the DR site
 * Used S3 tiering and automated RDS snapshots to cut storage and deployment costs
+
+
+
+## Phase 2: Service Translation & Architecture Design
+   This phase builds on phase 1 and focuses on mapping the operational needs to select the best-suited services from the many that AWS offers.
+	
+ VPC Creation:
+					□ The goal to ensure strong network isolation and management, so there will be 3 VPC's for:
+						◊ The main hospital site 
+						◊ The management site
+						◊ The DR site
+				  □ On-Prem Locations:
+				  	◊ Outpatient Clinic
+					  ◊ Satellite location 1
+					  ◊ Satellite location 2
+
+Services To Use 
+   □ Connecting The Cloud Environment To The On-Prem Locations:
+			   - Both the VPC's and on-prem sites will all be linked AWS Transit Gateway
+			   - Why AWS Transit Gateway?
+			     	◊ It provides consistent network design which makes for easier network management
+				     ◊ Uniform security configuration
+				     ◊ Designed for architectures that demand low-latency & demand high-security
+				     ◊ Higher cost compared to site-to-site VPN but is more reliable
+
+   □ To manage the on-prem servers and update them via SSH:
+			  - Use AWS Systems Manager
+              ◊ The SSH protocol is chose as it can be disabled when maintenance is completed on the sever
+
+   □ For automated data transfer between on-prem and AWS services like S3AWS DataSync:
+			  - For automated data transfer between on-prem and AWS services like S3
+			
+   □ For Monitoring & Alerts:
+			  - Setup CloudWatch agents on the on-prem and cloud servers
+					
+   □ IAM:
+			  - Needs to be combined with on-premises AD to allow access to the cloud resources
+			
