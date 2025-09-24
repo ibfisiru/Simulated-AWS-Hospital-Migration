@@ -119,5 +119,146 @@
 				§ x-ray
 				§ Ultrasound
 				
+
+
+
+## Setup Security Groups & VPC Endpoints:
+		A) For the Public Subnet:
+			§ Inbound Rules:
+				□ From Load balancer (0.0.0.0/0)
+					• TCP 443: HTTPS traffic for secure web access to applications and services
+					
+				□ From Admin Servers (ONLY IF AWS Systems Manager is not Setup)
+					• Setup SSH in the meantime
+					
+				□ For Load Balancer Health Checks:
+					• Rule to allow inbound TCP traffic  on port used by health checks:
+						◊ Port:
+				□ DNS:
+					• Allow traffic out of port 53 for DNS resolutions/App dependencies 
+				
+			§ Outbound Rules:
+				□ To Application Subnet (10.0.10.0/24, 10.0.11.0/24, 10.0.12.0/24)
+					• TCP 443: HTTPS traffic to application servers
+					• Custom application ports required by Cerner
+				□ Monitoring & Logging:
+					• Allow traffic to AWS service endpoints like CloudWatch Logs, AWS config, and S3 for storage of logs
+				
 			
+			
+		B) For the Private App Subnets:
+			§ Inbound Rules:
+					
+				□ From Administrative Subnet (10.0.30.0/24, 10.0.31.0/24, 10.0.32.0/24):
+					• TCP 22: SSH access for Linux server management
+					• TCP 3389: RDP access for Windows server management
+					• HTTPS: from admin SG
+					
+				□ From DB Tier:
+					• 1521
+				
+			
+			§ Outbound Rules:
+				□ To Internet (via NAT Gateway):
+					• TCP 443: HTTPS for system updates and patches
+					• TCP/UDP 53: DNS queries
+				□ To Database Subnet (10.0.20.0/24, 10.0.21.0/24, 10.0.22.0/24):
+					• TCP 1521: Oracle database primary connections
+					• TCP 1526: Oracle SQL*Net listener
+				□ To Administrative Subnet (10.0.30.0/24, 10.0.31.0/24, 10.0.32.0/24):
+					• HTTPS to Admin SG
+					• SSH to Admin SG
+					• RDP to Admin SG
+
+
+		C) For the Private Management Subnet:
+			§ The administrative subnet must accept incoming traffic from authorized sources:
+				• VPN or AWS Client VPN connections for secure remote access by IT staff
+				• AWS Systems Manager endpoints for secure systems management
+				• Return traffic from managed resources in other subnets
+			§ For Outbound:
+				• Access to application subnet for system management and monitoring
+				• Access to database subnet for database administration
+				• Access to internet via NAT Gateway strictly for patching and update traffic
+				• Communication with AWS services for management and monitoring
+			
+			§ Inbound Rules:
+				• From VPN/Remote Access (Client VPN Endpoint):
+					• TCP 443: HTTPS for secure remote access (Use VPC CIDR)
+					
+					• TCP 22: SSH connections from authorized administrators(Use VPC CIDR)
+					
+					• TCP 3389: RDP connections from authorized administrators (Use VPC CIDR)
+				
+			§ Outbound Rules:
+				• To Application Subnet (10.0.10.0/24, 10.0.11.0/24, 10.0.12.0/24):
+					• TCP 443: HTTPS for application monitoring
+				• To Database Subnet (10.0.20.0/24, 10.0.21.0/24, 10.0.22.0/24):
+					• TCP 1521: Oracle database management
+				• To Internet (via NAT Gateway):
+					• TCP 443: HTTPS for system updates and management tools
+					• 53: DNS queries
+					
+				• To AWS Services (Through VPC Endpoints):
+					• TCP 443: Access to AWS Systems Manager
+					• TCP 443: Access to AWS CloudWatch
+					• TCP 443: Access to other AWS management services
+				• To The VPC Endpoints:
+					• HTTPS
+					• Destination is the AD and Admin subnets (those attached to the VPC)
+		
+		D) For The Private DB Subnet:
+			§ DB Inbound Rules:
+				1) Allow Oracle traffic from application tier
+					• Type: Oracle-RDS (TCP 1521)
+					• Source: Application subnet CIDR ranges (10.0.10.0/24, 10.0.11.0/24, 10.0.12.0/24)
+					• Description: Allow Oracle traffic from application tier
+				2) Allow Admin Access
+					• Type: TCP (TCP 1521)
+					• Source: Management subnet CIDR ranges (10.0.30.0/24, 10.0.31.0/24, 10.0.32.0/24)
+					• Description: Allow traffic from admin servers
+			§ DB Outbound Rules:
+				□ Outbound rules are configured to use security groups instead of entire CIDR ranges for security reasons
+				1)  Allow HTTPS traffic to Internet:
+					• Type: Custom TCP 443
+					• Destination: 0.0.0.0/0 via nat gateway
+				2) Allow DNS querying
+					• Type: Custom TCP/UDP 53
+					• Destination: 0.0.0.0/0
+					• Description: Allow DNS resolution
+		
+		E) Configure VPC Endpoints:
+			§ Since this architecture is following zero-trust principals, resources in the private subnet need a way to connect to other AWS services like S3 and Systems Manager. VPC Endpoints are used to do this while allowing the instance to remain private from internet access:
+				• Systems Manager Needs 3 Endpoints:
+					• ssm endpoint: Allows the instance to communicate with Systems Manager service
+					• ssmmessages endpoint: Enables Session Manager to establish the connection
+					• ec2messages endpoint: Handles command and control communications between Systems Manager and the instance
+					
+				• For Each Systems Manager Endpoint:
+					• For the Subnets:
+						◊ The admin subnets in the 3 AZ's
+					• For the SG's:
+						The admin and AD security groups
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 	
