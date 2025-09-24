@@ -1,0 +1,121 @@
+## The Main VPC Site Has The Following Configuration:
+	□ CIDR: 10.0.0.0/16
+	□ Region: us-east-1 (North Virginia, closest to Boston, where the simulated hospital is located)
+	□ Enable DNS hostnames and DNS resolution
+	
+	□ Main VPC Site: Public Subnet Contains :
+		§ ONLY for the internet-facing load balancers and NAT gateways. This separates the part of the network receiving public traffic from sensitive resources
+		§ One subnet per AZ (3 AZs)
+		§ IP Ranges: 10.0.0.0/24, 10.0.1.0/24, 10.0.2.0/24
+
+	□ Main VPC Site: Private Application Subnet Contains:
+		§ Cerner EHR servers & clinical applications
+		§ One subnet per AZ (3 AZs)
+		§ CIDR range suggestion: 10.0.10.0/24, 10.0.11.0/24, 10.0.12.0/24
+			
+	□ Main VPC Site: Private Database Subnets:
+		§ For the database servers and storage of sensitive data
+		§ One subnet per AZ (3 AZs)
+		§ AZ Ranges: 10.0.20.0/24, 10.0.21.0/24, 10.0.22.0/24
+
+
+## The DR site VPC Has The Following Configuration:
+	□ CIDR: 10.1.0.0/16
+	□ Region us-east-2 (Ohio)
+	□ Enable DNS
+	□ Public Subnets:
+		§ ONLY for the internet-facing load balancers and NAT gateways. This separates the part of the network receiving public traffic from sensitive resources
+		§ One subnet per AZ
+		§ DR VPC Public AZ ranges: 10.1.0.0/24, 10.1.1.0/24, 10.1.2.0/24
+	
+	○ DR Site Application Subnet:
+		§ For the Cerner EHR servers & clinical applications
+		§ One subnet per AZ
+		§ CIDR range suggestion: 10.1.10.0/24, 10.1.11.0/24, 10.1.12.0/24
+				
+	○ DR Site Database Subnets:
+		§ For the database servers and storage of sensitive data
+		§ One subnet per AZ
+		§ CIDR range suggestion: 10.1.20.0/24, 10.1.21.0/24, 10.1.22.0/24
+			
+	○ Backup Admin Subnets:
+		§ The DR site contains an extra subnet that holds the backup management servers. 
+			- This is to save costs, as opposed to building an entirely new VPC for just the management site backups.
+		§ For administrative servers and tools and monitoring systems like:
+			□ Domain controllers for AD services
+			□ Admin jump servers that the IT team uses to manage other systems securely
+			□ System Admin tools like the management servers, patch management systems, and ITSM tools that track and manage IT incidents across the network
+			□ Backup management servers and consoles like those that manage the on-prem backups during the migration, and cloud-based backups after the migration
+		§ One subnet per AZ
+		§ CIDR range suggestion: 10.1.30.0/24, 10.1.31.0/24, 10.1.32.0/24
+
+
+
+
+## The Management Site VPC Has The Following Configuration:
+	□ VPC CIDR: 10.2.0.0/16
+    □ Enable DNS
+    □ Region: us-east-1 (North Virginia, to reduce latency in connecting for server management)
+	 □ Deployed in 2 AZs: Since the Management VPC is not hosting patient-facing workloads, 2 AZs are sufficient
+		○ Public Subnet:
+			§ Has Internet Gateway to manage traffic for server updates, etc. (Connects public route tables in both AZs)
+			§ Has a NAT gateway for outgoing traffic
+			§ Subnet is 10.2.0.0/24
+			
+		○ Private Admin Subnets:
+			§ For administrative servers and monitoring systems like:
+				□ Domain controllers for AD services
+				□ Admin jump servers that the IT team uses to manage other systems securely
+				□ System Admin tools like the management servers, patch management systems, and ITSM tools that track and manage IT incidents across the network
+				□ Backup management servers and consoles like those that manage the on-prem backups during the migration, and cloud-based backups after the migration
+			§ IP Range for the private subnet:
+					□  10.2.10.0/24
+		
+
+## Outpatient Clinic:
+	□ On-prem location
+	□ Holds Local App & DB Servers, Network Equipment, And Imaging Machines
+		○ Servers:
+			□ 2 servers handling core apps (limited version of EHR)
+		○ Network:
+			□ A router, switch, and firewall
+		○ Workstations:
+			□ For clinical staff
+		○ Medical devices:
+			□ Blood pressure monitors
+			□ Scales
+			□ X-ray
+			□  Ultrasound
+	□ Connects to transit gateway:
+			
+			
+## Two Satellite Locations:
+	□ On-prem locations
+	□ Connects to Transit Gateway (And Cloud VPCs) using Transit Gateway:
+	□ Hold Local App, DB, and Imaging Servers			
+	□ The 2 satellite locations need to access the following within AWS:
+		§ Cerner EHRs app
+		§ App DB
+		§ Send monitoring data to CloudWatch
+			□ Install CloudWatch agents on the on-prem servers
+		§ Stored backups of the on-prem servers within AWS
+	○ Network Infrastructure:
+		§ Internal switches
+		§ Firewalls
+		§ Local DNS servers
+	    § Servers (Compute):
+			○ Local app servers
+			○ Local DB servers
+			○ File servers
+			○ Print servers
+			○ Local domain controllers
+			○ Workstations:
+					□ Used by clinical staff to access the EHR System
+			○ Administrative workstations:
+					□ Used by the admin staff for tasks like scheduling, billing, and other admin functions
+			○ Medical Devices (Imaging):
+				§ Blood pressure
+				§ Scales
+				§ x-ray
+				§ Ultrasound
+				
