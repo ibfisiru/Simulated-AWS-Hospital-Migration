@@ -71,4 +71,13 @@ Phase 2: Mapping AWS Services to Design Considerations
 					
 	  □ IAM:
 	  	- Needs to be combined with on-premises AD to allow access to the cloud resources
+
+
+
+
+
+
+
+
+		
 			
