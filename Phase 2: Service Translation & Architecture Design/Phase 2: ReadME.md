@@ -1,6 +1,6 @@
-Mapping AWS Services to Design Considerations
+Phase 2: Mapping AWS Services to Design Considerations
  
-## This phase builds on phase 1 and focuses on the Architecture Design, mapping operational needs to select the best-suited services from the many that AWS offers. I used the AWS Well-Architected Framework to guide service selection/architecture design. Here are the selections for this simulation:
+## This phase focuses on the Architecture Design, mapping operational needs to select the best-suited services from the many that AWS offers. I used the AWS Well-Architected Framework to guide service selection/architecture design. Here are the selections for this simulation:
 
 ## VPC Setup:
  	□ Designed 3 logically isolated VPCs to separate traffic for:
