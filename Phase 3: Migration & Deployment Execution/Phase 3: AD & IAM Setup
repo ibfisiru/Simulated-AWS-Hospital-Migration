@@ -1,0 +1,127 @@
+A basic setup of the minimum roles required for this simulation. The goal is to add permissions/policies as they are needed.
+
+## Configure The AD:
+	* Setup Admin Server/Tools To Manage AD:
+		- Download AWS provided Microsoft AD admin tools on a machine that can connect to the VPC:
+			◊ Create a windows EC2 instance in Admin subnet to serve as a management workstation with the following config:
+			◊ Amazon Windows Server 2022 AMI
+			◊ t3.medium (Not meant to scale)
+			◊ Place in Administrative subnet
+			◊ Attach both security groups:
+				– FPHN-ADMIN-SG (for management access)
+				– FPHN-AD-SG (for AD communications)
+							
+				
+	* Get DNS info from current network setup to join the management EC2 instance to the AD domain (firstpointhospital.local)
+		-  Get the DNS server IPs provided by AWS directory Service
+			◊ In the AWS console
+			◊ Select the directory (firstpointhospital.local)
+			◊ Note the following:
+				- Directory IP's (10.0.30.37 and 10.0.31.220)
+				- VPC name
+				- Subnets
+				- Directory ID
+				- Directory admin password (set during creation)
+						
+					
+				
+	* Configure DNS on the management instance to use AWS AD's DNS Servers. This way instance can resolve and locate AWS AD services:
+		- Connect to the Windows AD management instance using Session Manager from the EC2 console
+						
+	* Join The Instance To The AWS Managed AD Domain (firstpointhospital.local):
+		-  Run Commands:
+			◊ $domainCred = Get-Credential
+			◊ Add-Computer -DomainName "firstpointhospital.local" -Credential (Get-Credential "Admin@firstpointhospital.local") -Restart
+						
+					
+					
+	* Setup Organizational Units:
+		-  OU's To Create:
+			◊ Clinical Staff OU
+			◊ IT Admin OU
+			◊ DB OU
+			◊ App Support OU
+
+		- Steps:
+			◊ Connect to the instance
+			◊ Open AD
+			◊ Right-click the domain and create OU
+			◊ Create AD users and Groups:
+			◊ Configure Group Policies
+	
+							
+	
+
+
+	*  Build The IAM Groups and Roles to Map to AD: 
+		- Create Groups For Human Users (Name are based on access control roles in phase 2 (Admins, Developers, Network Team, etc.))
+		- Use of AWS managed permissions as much as possible without granting roles more access than necessary
+		- Create Groups:
+			◊ Create Admin Group - Full Control
+				- Name: Admin
+				- Attach Policies:
+				- Administrator Access
+
+			◊ Create Developers Group
+				- Name: Developers
+				-  Policies:
+					◊ AmazonEC2FullAccess – Manage EC2 instances 
+						(FullAccess is used here to show deployment capabilities, in production this would be restricted to specific actions)
+					◊ AmazonRDSFullAccess – Manage RDS databases
+						(FullAccess is used here to show deployment capabilities, in production this would be restricted to specific actions)
+							
+
+			◊ Auditors Group:
+				-  Name: Auditors
+				- Policies:
+					◊ 'ReadOnlyAccess' to view logs, resources, and configs
+				
+			◊ Backup Admins Group:
+				- Name: BackupAdmins
+				- Policies:
+					◊ AmazonS3FullAccess – Manage S3 buckets and objects for backups.
+					◊ AmazonRDSBackupRestore – Manage RDS backups and snapshots (Custom inline policy for the simulation)
+				
+			◊ Network Admins Group:
+				- Name: NetworkAdmins
+				- Policies:
+					◊ AmazonVPCFullAccess – Manage VPCs, subnets, and route tables.
+					◊ AWSCloudFormationFullAccess (Optional while using templates) – Manage cloud resources programmatically
+
+
+	* Add Users To Groups:
+		- In IAM dashboard in AWS console, select user and assign to group
+			
+		-  Implement MFA:
+			◊ In IAM dashboard, go to account settings
+			◊ Enable MFA for each user
+			◊ Set password policy
+				- Minimum 12 characters (With upper/lowercase letters, numbers, and special characters)
+				- No arbitrary rotation unless compromise is suspected
+		
+
+	* Create IAM Roles For resources with least privilege. Additional policies should be added only as needed
+		- Create Role For EC2
+			◊ Name: AppServerRole
+			◊ Trusted Entity Type: EC2
+			◊ Use Cases: EC2
+			◊ Policies:
+				◊ AmazonS3ReadOnlyAccess – For backup data access.
+				◊ CloudWatchAgentServerPolicy – For monitoring and logging.
+				◊ AmazonSSMManagedInstanceCore – For Systems Manager (secure SSH-less access)
+				
+						
+		- Create Role For RDS:
+			◊ Name: DBRole
+			◊ Use Case: RDS
+			◊ Policies:
+				◊ AmazonS3ReadOnlyAccess – For accessing backups.
+				◊ CloudWatch Logs Policy – For performance monitoring and logging
+		
+				
+				
+	* Attach Roles To Resources:
+		- For EC2 Instances:
+			◊ In EC2 dashboard select instance -> actions -> security -> modify IAM role -> attach role
+		-  For RDS Instances:
+			◊ In RDS dashboard -> select DB -> modify -> choose role under IAM role
