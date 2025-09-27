@@ -36,8 +36,8 @@ Phase 2: Mapping AWS Services to Design Considerations
  
 ## For Security & Compliance:
 	* Mapped controls to support HIPAA and Zero Trust adherence:
-	* AWS IAM + on-prem AD integration
-	* KMS for key management: CloudHSM: For hardware encryption
+	* Identity is centralized through IAM + AD integration (More on this below)
+	* KMS for key management and CloudHSM for hardware encryption
 	* Security Hub, GuardDuty, CloudTrail: For monitoring and logging
  
 ## Database Considerations For Oracle DBs:
@@ -65,4 +65,24 @@ Phase 2: Mapping AWS Services to Design Considerations
 			
 ## For Monitoring & Alerts:
 	* Setup CloudWatch agents on the on-prem and AWS servers for unified monitoring and alerting
+
+
+## For IAM: Designed With Least Privilege & Zero-Trust
+	Identity and access were designed with a least-privilege and zero-trust model, with IAM roles, tightly scoped policies, and Active Directory integration for centralized authentication. Other considerations include:
+	* Human user access needs (Admin, Developer, Auditor, Backup Admin, Network Admin)
+		- Admins require full control of AWS resources and configs
+		- Developers manage app deployments, update servers, and test resources (Requires EC2, RDS, and Lambda-specific access)
+		- Auditors monitor logs, ensure compliance, and review IAM configurations (Requires 'ReadOnlyAccess' policy)
+		- Backup administrators manage backups and snapshots and conduct DR testing (Requires S3 and RDS snapshot access)
+		- Network admins manage VPCs, security groups, and route tables (Requires VPC and security group access)
+
+	* Resource-based access needs (EC2, RDS)
+		- EC2 instances run applications, connect to DBs, and upload backups (Requires access to S3 (for backups), CloudWatch (For monitoring), and SSM)
+		- RDS hosts the Oracle database and runs app queries (Requires access to S3 (backups), and CloudWatch logs)
+		
+	* AD integration with AWS Managed Microsoft AD
+	* AD Security Groups (rules, ports, inbound/outbound traffic across tiers)
+
+
+
 		
