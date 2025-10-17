@@ -72,7 +72,7 @@
 					□  10.2.10.0/24
 		
 
-## Outpatient Clinic:
+## The Outpatient Clinic:
 	□ On-prem location
 	□ Holds Local App & DB Servers, Network Equipment, And Imaging Machines
 		○ Servers:
@@ -89,7 +89,7 @@
 	□ Connects to transit gateway:
 			
 			
-## Two Satellite Locations:
+## The 2 Satellite Locations:
 	□ On-prem locations
 	□ Connects to Transit Gateway (And Cloud VPCs) using Transit Gateway:
 	□ Hold Local App, DB, and Imaging Servers			
