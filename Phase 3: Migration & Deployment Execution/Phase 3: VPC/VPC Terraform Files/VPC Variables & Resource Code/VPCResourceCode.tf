@@ -1,4 +1,4 @@
-resource "aws_vpc" "mainVPC" {
+resource "aws_vpc" "VPC" {
   tags = {
     Name = var.vpc_name
   }
