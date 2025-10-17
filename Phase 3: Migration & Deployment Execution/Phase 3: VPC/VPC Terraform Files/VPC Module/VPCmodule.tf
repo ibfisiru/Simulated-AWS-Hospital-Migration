@@ -32,11 +32,11 @@ provider "aws" {
 # Modules To Deploy the main and management VPCs
 # Main Hospital Site VPC
 
-module "main_VPC" {
+module "mainVPC" {
   source = "C:/Users/fisir/Terraform/FPHNTerraform/VPC/VPCSetup/VPCDefinitions"
 
   # Input Variables
-  vpc_name = "Main Hospital SIte VPC"
+  vpc_name = "Main Hospital Site VPC"
   cidr     = "10.0.0.0/16"
   providers = {
     aws = aws.east1
@@ -45,7 +45,7 @@ module "main_VPC" {
 
 # Management Site VPC
 
-module "management_VPC" {
+module "managementVPC" {
   source = "C:/Users/fisir/Terraform/FPHNTerraform/VPC/VPCSetup/VPCDefinitions"
 
   # Input Variables
@@ -58,7 +58,7 @@ module "management_VPC" {
 
 # Disaster Recovery Site VPC
 
-module "DR_VPC" {
+module "DRVPC" {
   source = "C:/Users/fisir/Terraform/FPHNTerraform/VPC/VPCSetup/VPCDefinitions"
 
   # Input Variables
