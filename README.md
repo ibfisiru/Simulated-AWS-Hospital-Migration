@@ -33,6 +33,11 @@ To keep everything structured, I used the ITIL framework to develop my own high-
 4) Compliance & Optimization
 5) Cutover & Training
 
+## Terraform Setup
+   Each section has an associate terraform directory which contains the code used to deploy that section. For example:
+      - The directory 'Phase 3: VPC Setup' has a folder within it with used used to deploy the VPC's in the diagram below
+
+
 ## The following diagram was designed first and used as the blueprint for building the infrastructure:
 ![FPHN Architecture](https://github.com/user-attachments/assets/28ed0aba-21d7-44fe-bc02-a66694870c3f)
 
